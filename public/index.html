@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MisterToy Backend API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .endpoint {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+        }
+        .method {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .url {
+            font-family: monospace;
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        .description {
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 MisterToy Backend API</h1>
+        <p>Welcome to the MisterToy Backend API server. This server provides RESTful endpoints for managing toys and user authentication.</p>
+        
+        <h2>Available Endpoints:</h2>
+        
+        <div class="endpoint">
+            <div class="method">GET</div>
+            <div class="url">/api/toy</div>
+            <div class="description">Get all toys with optional filtering (txt, minPrice, maxPrice, category, inStock, pageIdx)</div>
+        </div>
+        
+        <div class="endpoint">
+            <div class="method">GET</div>
+            <div class="url">/api/toy/:id</div>
+            <div class="description">Get a specific toy by ID</div>
+        </div>
+        
+        <div class="endpoint">
+            <div class="method">POST</div>
+            <div class="url">/api/toy</div>
+            <div class="description">Create a new toy (requires authentication)</div>
+        </div>
+        
+        <div class="endpoint">
+            <div class="method">PUT</div>
+            <div class="url">/api/toy/:id</div>
+            <div class="description">Update an existing toy (requires authentication)</div>
+        </div>
+        
+        <div class="endpoint">
+            <div class="method">DELETE</div>
+            <div class="url">/api/toy/:id</div>
+            <div class="description">Delete a toy (requires authentication)</div>
+        </div>
+        
+        <div class="endpoint">
+            <div class="method">POST</div>
+            <div class="url">/api/auth/login</div>
+            <div class="description">User login</div>
+        </div>
+        
+        <div class="endpoint">
+            <div class="method">POST</div>
+            <div class="url">/api/auth/signup</div>
+            <div class="description">User registration</div>
+        </div>
+        
+        <div class="endpoint">
+            <div class="method">POST</div>
+            <div class="url">/api/auth/logout</div>
+            <div class="description">User logout</div>
+        </div>
+        
+        <h2>Server Status:</h2>
+        <p>✅ Server is running and ready to handle requests</p>
+        <p>📝 Check the console for detailed logs</p>
+    </div>
+</body>
+</html>
