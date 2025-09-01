@@ -1,24 +1,48 @@
 # MisterToy Backend
 
-Backend API server for the MisterToy application.
+A Node.js backend API server for the MisterToy application, built with Express.js.
 
-## Description
-This is the backend service for the MisterToy project, providing APIs and business logic for the frontend application.
+## Quick Start
 
-## Setup
-1. Install dependencies: `npm install`
-2. Configure environment variables
-3. Run the server: `npm start`
+```bash
+# Install dependencies
+npm install
 
-## Technologies
-- Node.js
-- Express.js
-- Database (TBD)
-- Authentication (TBD)
+# Start development server
+npm run dev:win    # Windows
+npm run dev:mac    # Mac/Linux
+npm start          # General
+```
 
 ## API Endpoints
-- Coming soon...
 
-## Development
-- Run in development mode: `npm run dev`
-- Run tests: `npm test`
+- `GET /api/toy` - Get all toys with filtering
+- `GET /api/toy/:id` - Get toy by ID
+- `POST /api/toy` - Create new toy (auth required)
+- `PUT /api/toy/:id` - Update toy (auth required)
+- `DELETE /api/toy/:id` - Delete toy (auth required)
+- `POST /api/auth/login` - User login
+- `POST /api/auth/signup` - User registration
+
+## Sample Users
+
+- `puki` / `puki` (Puki Ja)
+- `admin` / `admin` (Admin User)
+- `muki` / `secret2` (Muki Ba)
+
+## Project Structure
+
+```
+├── services/          # Business logic
+├── data/             # JSON data storage
+├── public/           # Static files
+├── logs/             # Application logs
+└── server.js         # Main server file
+```
+
+## Technologies
+
+- Node.js
+- Express.js
+- ES6 Modules
+- Cookie-based authentication
