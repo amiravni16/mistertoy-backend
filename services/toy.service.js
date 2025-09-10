@@ -76,7 +76,7 @@ function save(toy, loggedinUser) {
             return Promise.reject('Not your toy')
         }
         toyToUpdate.name = toy.name
-        toyToUpdate.category = toy.category
+        toyToUpdate.labels = toy.labels || []
         toyToUpdate.price = toy.price
         toyToUpdate.description = toy.description
         toyToUpdate.ageRange = toy.ageRange
@@ -86,7 +86,8 @@ function save(toy, loggedinUser) {
     } else {
         toy._id = utilService.makeId()
         toy.owner = loggedinUser
-        toy.createdAt = new Date().toISOString()
+        toy.createdAt = Date.now()
+        toy.labels = toy.labels || []
         toys.push(toy)
     }
     toy.updatedAt = new Date().toISOString()

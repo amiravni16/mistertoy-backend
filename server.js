@@ -71,7 +71,7 @@ app.post('/api/toy', (req, res) => {
 
     const toy = {
         name: req.body.name,
-        category: req.body.category,
+        labels: req.body.labels || [],
         price: +req.body.price,
         description: req.body.description,
         ageRange: req.body.ageRange,
@@ -93,7 +93,7 @@ app.put('/api/toy/:id', (req, res) => {
     const toy = {
         _id: req.params.id,
         name: req.body.name,
-        category: req.body.category,
+        labels: req.body.labels || [],
         price: +req.body.price,
         description: req.body.description,
         ageRange: req.body.ageRange,
