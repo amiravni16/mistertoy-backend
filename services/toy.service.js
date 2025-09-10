@@ -6,36 +6,48 @@ export const toyService = {
     query,
     getById,
     remove,
-    save
+    save,
+    getLabelCounts
 }
 
 const PAGE_SIZE = 5
 const toys = utilService.readJsonFile('data/toys.json')
 
-function query(filterBy = { txt: '' }) {
-    const regex = new RegExp(filterBy.txt, 'i')
-    var toysToReturn = toys.filter(toy => regex.test(toy.name))
+function query(filterBy = {}) {
+    // Create a shallow copy since sort() mutates the original array
+    let filteredToys = [...toys]
 
-    if (filterBy.minPrice) {
-        toysToReturn = toysToReturn.filter(toy => toy.price >= filterBy.minPrice)
+    if (filterBy.txt) {
+        const regExp = new RegExp(filterBy.txt, 'i')
+        filteredToys = filteredToys.filter(toy => regExp.test(toy.name))
     }
-    if (filterBy.maxPrice) {
-        toysToReturn = toysToReturn.filter(toy => toy.price <= filterBy.maxPrice)
-    }
-    if (filterBy.category) {
-        toysToReturn = toysToReturn.filter(toy => 
-            toy.category.toLowerCase() === filterBy.category.toLowerCase()
+    if (filterBy.inStock) {
+        filteredToys = filteredToys.filter(
+            toy => toy.inStock === JSON.parse(filterBy.inStock)
         )
     }
-    if (filterBy.inStock !== undefined) {
-        toysToReturn = toysToReturn.filter(toy => toy.inStock === filterBy.inStock)
+    if (filterBy.labels && filterBy.labels.length) {
+        filteredToys = filteredToys.filter(
+            toy => filterBy.labels.every(label => toy.labels.includes(label))
+        )
     }
 
-    if (filterBy.pageIdx !== undefined) {
-        const startIdx = filterBy.pageIdx * PAGE_SIZE
-        toysToReturn = toysToReturn.slice(startIdx, startIdx + PAGE_SIZE)
+    const sortBy = filterBy.sortBy || { type: '', sortDir: 1 }
+    const sortDirection = +sortBy.sortDir
+
+    if (sortBy.type) {
+        filteredToys.sort((toy1, toy2) => {
+            if (sortBy.type === 'name') {
+                return toy1.name.localeCompare(toy2.name) * sortDirection
+            } else if (sortBy.type === 'price' || sortBy.type === 'createdAt') {
+                return (toy1[sortBy.type] - toy2[sortBy.type]) * sortDirection
+            }
+        })
+    } else {
+        filteredToys.sort((toy1, toy2) => (toy2.createdAt - toy1.createdAt) * sortDirection)
     }
-    return Promise.resolve(toysToReturn)
+
+    return Promise.resolve(filteredToys)
 }
 
 function getById(toyId) {
@@ -80,6 +92,25 @@ function save(toy, loggedinUser) {
     toy.updatedAt = new Date().toISOString()
     delete toy.owner.score
     return _saveToysToFile().then(() => toy)
+}
+
+function getLabelCounts() {
+    return query().then(toys => {
+        const labelCountMap = toys.reduce((acc, toy) => {
+            toy.labels.forEach(label => {
+                acc[label] = (acc[label] || 0) + 1
+            })
+            return acc
+        }, {})
+
+        const labelCountArray = Object.entries(labelCountMap).map(
+            ([label, count]) => ({
+                label,
+                count,
+            })
+        )
+        return labelCountArray
+    })
 }
 
 function _saveToysToFile() {

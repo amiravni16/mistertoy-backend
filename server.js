@@ -28,19 +28,29 @@ app.set('query parser', 'extended')
 
 //* REST API for Toys
 app.get('/api/toy', (req, res) => {
+    const { txt, inStock, labels, sortBy } = req.query
+
     const filterBy = {
-        txt: req.query.txt || '',
-        minPrice: +req.query.minPrice || 0,
-        maxPrice: +req.query.maxPrice || 0,
-        category: req.query.category || '',
-        inStock: req.query.inStock !== undefined ? req.query.inStock === 'true' : undefined,
-        pageIdx: req.query.pageIdx || undefined,
+        txt: txt || '',
+        inStock: inStock || null,
+        labels: labels || [],
+        sortBy: sortBy || { type: '', sortDir: 1 },
     }
+
     toyService.query(filterBy)
         .then(toys => res.send(toys))
         .catch(err => {
             loggerService.error('Cannot get toys', err)
             res.status(400).send('Cannot get toys')
+        })
+})
+
+app.get('/api/toy/label-counts', (req, res) => {
+    toyService.getLabelCounts()
+        .then(labelCounts => res.send(labelCounts))
+        .catch(err => {
+            loggerService.error('Cannot get label counts', err)
+            res.status(400).send('Cannot get label counts')
         })
 })
 

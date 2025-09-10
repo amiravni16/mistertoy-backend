@@ -2,14 +2,13 @@
   {
     "_id": "toy1",
     "name": "Teddy Bear",
-    "category": "Stuffed Animals",
     "price": 29.99,
+    "inStock": true,
+    "labels": ["Stuffed Animals", "Baby"],
+    "createdAt": 1755085852762,
     "description": "A soft and cuddly teddy bear perfect for children",
     "ageRange": "0-5",
-    "inStock": true,
     "imageUrl": "https://example.com/teddy-bear.jpg",
-    "createdAt": "2024-01-15T10:00:00.000Z",
-    "updatedAt": "2024-01-15T10:00:00.000Z",
     "owner": {
       "_id": "u101",
       "fullname": "Puki Ja"
@@ -18,14 +17,13 @@
   {
     "_id": "toy2",
     "name": "LEGO City Police Station",
-    "category": "Building Blocks",
     "price": 89.99,
+    "inStock": true,
+    "labels": ["Building Blocks", "Box game"],
+    "createdAt": 1755085852763,
     "description": "Build your own police station with this detailed LEGO set",
     "ageRange": "6-12",
-    "inStock": true,
     "imageUrl": "https://example.com/lego-police.jpg",
-    "createdAt": "2024-01-15T10:00:00.000Z",
-    "updatedAt": "2024-01-15T10:00:00.000Z",
     "owner": {
       "_id": "u102",
       "fullname": "Muki Ba"
@@ -34,14 +32,13 @@
   {
     "_id": "toy3",
     "name": "Remote Control Car",
-    "category": "Remote Control",
     "price": 45.99,
+    "inStock": false,
+    "labels": ["Remote Control", "Battery Powered", "Outdoor"],
+    "createdAt": 1755085852764,
     "description": "Fast and fun remote control car with rechargeable battery",
     "ageRange": "8-14",
-    "inStock": false,
     "imageUrl": "https://example.com/rc-car.jpg",
-    "createdAt": "2024-01-15T10:00:00.000Z",
-    "updatedAt": "2024-01-15T10:00:00.000Z",
     "owner": {
       "fullname": "admin",
       "_id": "Uo93j",
@@ -49,4 +46,3 @@
     }
   }
 ]
-
