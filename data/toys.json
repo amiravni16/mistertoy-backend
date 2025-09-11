@@ -4,7 +4,10 @@
     "name": "Teddy Bear",
     "price": 29.99,
     "inStock": true,
-    "labels": ["Stuffed Animals", "Baby"],
+    "labels": [
+      "Stuffed Animals",
+      "Baby"
+    ],
     "createdAt": 1755085852762,
     "description": "A soft and cuddly teddy bear perfect for children",
     "ageRange": "0-5",
@@ -19,7 +22,10 @@
     "name": "LEGO City Police Station",
     "price": 89.99,
     "inStock": true,
-    "labels": ["Building Blocks", "Box game"],
+    "labels": [
+      "Building Blocks",
+      "Box game"
+    ],
     "createdAt": 1755085852763,
     "description": "Build your own police station with this detailed LEGO set",
     "ageRange": "6-12",
@@ -34,7 +40,11 @@
     "name": "Remote Control Car",
     "price": 45.99,
     "inStock": false,
-    "labels": ["Remote Control", "Battery Powered", "Outdoor"],
+    "labels": [
+      "Remote Control",
+      "Battery Powered",
+      "Outdoor"
+    ],
     "createdAt": 1755085852764,
     "description": "Fast and fun remote control car with rechargeable battery",
     "ageRange": "8-14",
@@ -44,5 +54,47 @@
       "_id": "Uo93j",
       "isAdmin": true
     }
+  },
+  {
+    "name": "Teddy Bear 2",
+    "labels": [
+      "Doll"
+    ],
+    "price": 111,
+    "description": "AAA",
+    "ageRange": "1-99",
+    "imageUrl": "https://robohash.org/New Toy?set=set4",
+    "inStock": true,
+    "_id": "IaiAA",
+    "owner": {
+      "username": "admin",
+      "password": "admin",
+      "fullname": "admin",
+      "_id": "Uo93j",
+      "isAdmin": true
+    },
+    "createdAt": 1757505915747,
+    "updatedAt": "2025-09-10T12:05:15.747Z"
+  },
+  {
+    "name": "Teddy Bear 3",
+    "labels": [
+      "On wheels"
+    ],
+    "price": 20,
+    "description": "A",
+    "ageRange": "0-6",
+    "imageUrl": "https://robohash.org/New Toy?set=set4",
+    "inStock": true,
+    "_id": "SlqFZ",
+    "owner": {
+      "username": "admin",
+      "password": "admin",
+      "fullname": "admin",
+      "_id": "Uo93j",
+      "isAdmin": true
+    },
+    "createdAt": 1757507661049,
+    "updatedAt": "2025-09-10T12:34:21.049Z"
   }
 ]

@@ -1,7 +1,7 @@
 import fs from 'fs'
 import Cryptr from 'cryptr'
 import { utilService } from './util.service.js'
-import { loggerService } from './logger.service.js'
+import { logger } from './logger.service.js'
 
 const cryptr = new Cryptr(process.env.SECRET1 || 'secret-puk-1234')
 
@@ -86,7 +86,7 @@ function _saveUsersToFile() {
         const data = JSON.stringify(users, null, 2)
         fs.writeFile('data/user.json', data, (err) => {
             if (err) {
-                loggerService.error('Cannot write to users file', err)
+                logger.error('Cannot write to users file', err)
                 return reject(err)
             }
             resolve()

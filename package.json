@@ -19,11 +19,14 @@
   "author": "Amir",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "cryptr": "^6.2.0",
     "express": "^5.1.0",
-    "follow-redirects": "^1.15.3"
+    "follow-redirects": "^1.15.3",
+    "mongodb": "^6.0.0",
+    "mongoose": "^8.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
