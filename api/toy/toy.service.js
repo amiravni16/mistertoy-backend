@@ -1,6 +1,4 @@
 import { ObjectId } from 'mongodb'
-import { Toy } from '../../models/toy.model.js'
-
 import { dbService } from '../../services/db.service.js'
 import { logger } from '../../services/logger.service.js'
 import { utilService } from '../../services/util.service.js'
@@ -11,8 +9,8 @@ export const toyService = {
     getById,
     add,
     update,
-    addToyMsg,
-    removeToyMsg,
+    addMsg,
+    removeMsg,
     getLabelCounts
 }
 
@@ -151,38 +149,33 @@ async function update(toy, loggedinUser) {
     }
 }
 
-async function addToyMsg(toyId, msg) {
+async function addMsg(toyId, msg) {
     try {
         msg.id = utilService.makeId()
-
-        const toy = await Toy.findById(toyId)
-        if (!toy) {
-            throw new Error('Toy not found')
-        }
-
-        toy.msgs.push(msg)
-        await toy.save()
         
+        const collection = await dbService.getCollection('toy')
+        
+        await collection.updateOne(
+            { _id: ObjectId.createFromHexString(toyId) },
+            { $push: { msgs: msg } }
+        )
         return msg
     } catch (err) {
-        logger.error(`cannot add toy msg ${toyId}`, err)
+        logger.error(`cannot add message to toy ${toyId}`, err)
         throw err
     }
 }
 
-async function removeToyMsg(toyId, msgId) {
+async function removeMsg(toyId, msgId) {
     try {
-        const toy = await Toy.findById(toyId)
-        if (!toy) {
-            throw new Error('Toy not found')
-        }
-
-        toy.msgs = toy.msgs.filter(msg => msg.id !== msgId)
-        await toy.save()
-        
+        const collection = await dbService.getCollection('toy')
+        await collection.updateOne(
+            { _id: ObjectId.createFromHexString(toyId) },
+            { $pull: { msgs: { id: msgId } } }
+        )
         return msgId
     } catch (err) {
-        logger.error(`cannot remove toy msg ${toyId}`, err)
+        logger.error(`cannot remove message from toy ${toyId}`, err)
         throw err
     }
 }
