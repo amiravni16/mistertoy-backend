@@ -48,7 +48,28 @@ const toySchema = new mongoose.Schema({
             type: Boolean,
             default: false
         }
-    }
+    },
+    msgs: [{
+        id: {
+            type: String,
+            required: true
+        },
+        txt: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        by: {
+            _id: {
+                type: String,
+                required: true
+            },
+            fullname: {
+                type: String,
+                required: true
+            }
+        }
+    }]
 }, {
     timestamps: false // We're using createdAt as Number
 })

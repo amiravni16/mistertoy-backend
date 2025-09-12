@@ -40,7 +40,25 @@ async function seedDatabase() {
                     _id: 'user1',
                     fullname: 'Regular User',
                     isAdmin: false
-                }
+                },
+                msgs: [
+                    {
+                        id: 'msg1',
+                        txt: 'Great toy, how much',
+                        by: {
+                            _id: 'u101',
+                            fullname: 'Puki Ja'
+                        }
+                    },
+                    {
+                        id: 'msg2',
+                        txt: 'Perfect for my baby! Very soft and safe.',
+                        by: {
+                            _id: 'admin',
+                            fullname: 'Admin User'
+                        }
+                    }
+                ]
             },
             {
                 name: 'LEGO City Police Station',
