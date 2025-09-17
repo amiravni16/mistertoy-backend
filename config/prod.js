@@ -1,4 +1,4 @@
 export default {
-    dbURL: 'mongodb://127.0.0.1:27017',
-    dbName: 'mistertoy_db'
+    dbURL: 'mongodb+srv://mistertoy-admin:Mistertoys123@cluster0.sek3dhj.mongodb.net/',
+    dbName: 'mistertoy'
 }
