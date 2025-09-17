@@ -17,24 +17,23 @@ app.use(cookieParser())
 app.use(express.json())
 app.use(express.static('public'))
 
+// Configuring CORS for both development and production
+const corsOptions = {
+    origin: [
+        'http://127.0.0.1:5173', 
+        'http://localhost:5173',
+        'http://127.0.0.1:3000', 
+        'http://localhost:3000',
+        'https://mistertoy-frontend-hqv8.onrender.com', // Production frontend URL
+    ],
+    credentials: true
+}
+app.use(cors(corsOptions))
+
 if (process.env.NODE_ENV === 'production') {
     // Express serve static files on production environment
     app.use(express.static(path.resolve(__dirname, 'public')))
     console.log('__dirname: ', __dirname)
-} else {
-    // Configuring CORS
-    // Make sure origin contains the url 
-    // your frontend dev-server is running on
-    const corsOptions = {
-        origin: [
-            'http://127.0.0.1:5173', 
-            'http://localhost:5173',
-            'http://127.0.0.1:3000', 
-            'http://localhost:3000',
-        ],
-        credentials: true
-    }
-    app.use(cors(corsOptions))
 }
 
 import { authRoutes } from './api/auth/auth.routes.js'
