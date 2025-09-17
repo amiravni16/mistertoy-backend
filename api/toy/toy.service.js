@@ -70,7 +70,7 @@ async function query(filterBy = {}) {
 async function getById(toyId) {
     try {
         const collection = await dbService.getCollection('toy')
-        const toy = await collection.findOne({ _id: ObjectId.createFromHexString(toyId) })
+        const toy = await collection.findOne({ _id: new ObjectId(toyId) })
         if (!toy) {
             throw new Error('Toy not found')
         }
@@ -86,7 +86,7 @@ async function remove(toyId, loggedinUser) {
         const collection = await dbService.getCollection('toy')
         
         // Check if user has permission to delete
-        const toy = await collection.findOne({ _id: ObjectId.createFromHexString(toyId) })
+        const toy = await collection.findOne({ _id: new ObjectId(toyId) })
         if (!toy) {
             throw new Error('Toy not found')
         }
@@ -95,7 +95,7 @@ async function remove(toyId, loggedinUser) {
             throw new Error('Not your toy')
         }
 
-        const { deletedCount } = await collection.deleteOne({ _id: ObjectId.createFromHexString(toyId) })
+        const { deletedCount } = await collection.deleteOne({ _id: new ObjectId(toyId) })
         return deletedCount
     } catch (err) {
         logger.error(`cannot remove toy ${toyId}`, err)
@@ -119,7 +119,7 @@ async function update(toy, loggedinUser) {
         const collection = await dbService.getCollection('toy')
         
         // Check if user has permission to update
-        const existingToy = await collection.findOne({ _id: ObjectId.createFromHexString(toy._id) })
+        const existingToy = await collection.findOne({ _id: new ObjectId(toy._id) })
         if (!existingToy) {
             throw new Error('Toy not found')
         }
@@ -139,7 +139,7 @@ async function update(toy, loggedinUser) {
         }
 
         await collection.updateOne(
-            { _id: ObjectId.createFromHexString(toy._id) }, 
+            { _id: new ObjectId(toy._id) }, 
             { $set: toyToSave }
         )
         return toy
@@ -156,7 +156,7 @@ async function addMsg(toyId, msg) {
         const collection = await dbService.getCollection('toy')
         
         await collection.updateOne(
-            { _id: ObjectId.createFromHexString(toyId) },
+            { _id: new ObjectId(toyId) },
             { $push: { msgs: msg } }
         )
         return msg
@@ -170,7 +170,7 @@ async function removeMsg(toyId, msgId) {
     try {
         const collection = await dbService.getCollection('toy')
         await collection.updateOne(
-            { _id: ObjectId.createFromHexString(toyId) },
+            { _id: new ObjectId(toyId) },
             { $pull: { msgs: { id: msgId } } }
         )
         return msgId
