@@ -8,6 +8,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 import { logger } from './services/logger.service.js'
+import { config } from './config/index.js'
 logger.info('server.js loaded...')
 
 const app = express()
@@ -40,6 +41,16 @@ import { authRoutes } from './api/auth/auth.routes.js'
 import { userRoutes } from './api/user/user.routes.js'
 import { toyRoutes } from './api/toy/toy.routes.js'
 import { reviewRoutes } from './api/review/review.routes.js'
+
+// Debug endpoint
+app.get('/api/debug', (req, res) => {
+    res.json({
+        nodeEnv: process.env.NODE_ENV,
+        dbURL: config.dbURL,
+        dbName: config.dbName,
+        timestamp: new Date().toISOString()
+    })
+})
 
 // routes
 app.use('/api/auth', authRoutes)
