@@ -2,6 +2,11 @@
 
 A Node.js backend API server for the MisterToy application, built with Express.js.
 
+## 🚀 Live API
+
+**API Base URL:** [https://mistertoy-backend-8pc5.onrender.com](https://mistertoy-backend-8pc5.onrender.com)  
+**API Documentation:** [https://mistertoy-backend-8pc5.onrender.com/api/debug](https://mistertoy-backend-8pc5.onrender.com/api/debug)
+
 ## Quick Start
 
 ```bash
@@ -40,9 +45,20 @@ npm start          # General
 └── server.js         # Main server file
 ```
 
+## Deployment
+
+This backend is deployed on [Render.com](https://render.com/) as a Web Service:
+
+- **Environment:** Production
+- **Database:** MongoDB Atlas (cloud database)
+- **Environment Variables:**
+  - `NODE_ENV`: production
+  - Database connection configured for Atlas
+
 ## Technologies
 
 - Node.js
 - Express.js
+- MongoDB Atlas
 - ES6 Modules
 - Cookie-based authentication
