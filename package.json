@@ -7,6 +7,8 @@
   "scripts": {
     "dev:win": "set PORT=3030&nodemon --ignore \"./data\" server.js",
     "dev:mac": "export PORT=3030 && nodemon --ignore \"./data\" server.js",
+    "server:dev": "nodemon --env-file=.env server.js",
+    "server:prod": "set NODE_ENV=production&&node server.js",
     "start": "node server.js"
   },
   "keywords": [
@@ -23,6 +25,7 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "cryptr": "^6.2.0",
+    "dotenv": "^16.3.1",
     "express": "^5.1.0",
     "follow-redirects": "^1.15.3",
     "mongodb": "^6.0.0",

@@ -7,6 +7,37 @@ A Node.js backend API server for the MisterToy application, built with Express.j
 **API Base URL:** [https://mistertoy-backend-8pc5.onrender.com](https://mistertoy-backend-8pc5.onrender.com)  
 **API Documentation:** [https://mistertoy-backend-8pc5.onrender.com/api/debug](https://mistertoy-backend-8pc5.onrender.com/api/debug)
 
+## Environment Setup
+
+1. **Copy the environment template:**
+   ```bash
+   cp .env.example .env
+   ```
+
+2. **Configure your environment variables in `.env`:**
+   ```env
+   # MongoDB Configuration
+   MONGODB_URL=mongodb+srv://username:password@cluster.mongodb.net/
+   MONGODB_DB_NAME=your_database_name
+   
+   # Server Configuration
+   PORT=3030
+   NODE_ENV=development
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+4. **Start the development server:**
+   ```bash
+   npm run server:dev    # With environment file
+   npm run dev:win       # Windows (legacy)
+   npm run dev:mac       # Mac/Linux (legacy)
+   npm start             # General
+   ```
+
 ## Quick Start
 
 ```bash
@@ -14,9 +45,10 @@ A Node.js backend API server for the MisterToy application, built with Express.j
 npm install
 
 # Start development server
-npm run dev:win    # Windows
-npm run dev:mac    # Mac/Linux
-npm start          # General
+npm run server:dev      # Recommended (with .env file)
+npm run dev:win         # Windows
+npm run dev:mac         # Mac/Linux
+npm start               # General
 ```
 
 ## API Endpoints
@@ -45,6 +77,15 @@ npm start          # General
 └── server.js         # Main server file
 ```
 
+## Security Notes
+
+⚠️ **IMPORTANT:** Never commit sensitive credentials to version control!
+
+- The `.env` file is already included in `.gitignore`
+- Use `.env.example` as a template for other developers
+- For production deployment, set environment variables in your hosting platform
+- Rotate database credentials if they were previously exposed
+
 ## Deployment
 
 This backend is deployed on [Render.com](https://render.com/) as a Web Service:
@@ -53,7 +94,8 @@ This backend is deployed on [Render.com](https://render.com/) as a Web Service:
 - **Database:** MongoDB Atlas (cloud database)
 - **Environment Variables:**
   - `NODE_ENV`: production
-  - Database connection configured for Atlas
+  - `MONGODB_URL`: Set in Render environment variables
+  - `MONGODB_DB_NAME`: Set in Render environment variables
 
 ## Technologies
 
